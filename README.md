@@ -230,3 +230,139 @@ voice-ai-terminal/
 ## 许可证
 
 许可证尚未确定。在添加正式开源许可证之前，默认保留所有权利。
+
+
+---
+
+# Intelligent Voice Interaction Terminal
+
+An Android-based intelligent terminal designed around natural voice interaction, with a touchscreen as a secondary control surface. Users can wake the device, talk continuously with different AI assistants, open audio and content applications, navigate spoken menus, and control playback without frequently using a phone or touching the screen.
+
+> Current status: requirements definition and solution design.
+
+## Project Vision
+
+This project is more than a conventional smart speaker. It is intended to provide an extensible voice-first platform that can:
+
+- wake up through a fixed phrase such as “Hello, Assistant”;
+- understand natural language and context-dependent commands;
+- connect to AI assistants such as Doubao and ChatGPT;
+- open and control Android applications such as Xuexi Qiangguo, Soda Music, and Yunting;
+- announce available menus and accept selections by number or name;
+- provide clear spoken and visual feedback for every operation;
+- support additional AI assistants and content services through modular adapters.
+
+## Example Interaction
+
+~~~text
+User: Hello, Assistant.
+Terminal: I’m listening.
+User: Open Xuexi Qiangguo.
+Terminal: Xuexi Qiangguo is open. You can choose:
+          One, News Broadcast;
+          Two, Daily News Audio;
+          Three, Theory Learning;
+          Four, Recently Played.
+User: Choose the second option.
+Terminal: Playing Daily News Audio.
+User: Pause.
+Terminal: Paused.
+~~~
+
+## Core Capabilities
+
+### Voice Wake-Up and Continuous Conversation
+
+- Fixed wake phrase with sound, light, or screen feedback
+- Far-field microphones, noise reduction, echo cancellation, and barge-in
+- Natural-language understanding with session context
+- Clarification for ambiguous or low-confidence requests
+- Online speech recognition with room for offline essential commands
+
+### AI Assistants and Content Applications
+
+Initial targets include Doubao, ChatGPT, Xuexi Qiangguo, Soda Music, Yunting, news, radio, audiobooks, and other services available through official APIs, SDKs, web applications, deep links, or Android applications.
+
+Users can open, exit, and switch services by voice. Common playback controls include play, pause, resume, previous, next, volume adjustment, fast-forward, rewind, favorite, sleep timer, return, and exit.
+
+### Spoken Menus and Feedback
+
+The terminal announces available sections and actions. Users can select an option by its number or name and use commands such as “next page,” “repeat,” “speak more slowly,” “read only the first three,” and “go back.” Every operation must return a spoken success, failure, or processing message.
+
+### Touchscreen, Accounts, and Privacy
+
+The optional touchscreen displays the current application, playback content, AI conversation, spoken menu, progress, volume, network status, and essential controls. Credentials should be encrypted with Android Keystore or an equivalent mechanism. The device should include a physical microphone mute control, clear activity indicators, and confirmation for purchases, payments, deletion, or outbound communication.
+
+## Proposed Architecture
+
+~~~text
+Microphone Array
+   │
+Wake Word / VAD / Noise Reduction / Echo Cancellation
+   │
+Automatic Speech Recognition
+   │
+Conversation Orchestrator ── Session Context and Menu State
+   │
+Intent Recognition and Policy Router
+   ├── AI Assistant Adapters
+   ├── Audio Platform Adapters
+   ├── Android Application Control Adapters
+   └── System Control Adapter
+   │
+Execution Results and Error Handling
+   │
+Text-to-Speech + Screen UI + Light Feedback
+~~~
+
+Recommended integration priority:
+
+1. Official API or SDK
+2. Android Intent, App Link, or deep link
+3. Authorized web service
+4. Android Accessibility Service or UI automation
+5. Custom partner application
+
+## Suggested Hardware
+
+- Android operating system
+- Far-field microphone array
+- Noise reduction and acoustic echo cancellation
+- Speaker and optional audio output
+- Touch display
+- Wi-Fi and Bluetooth
+- Physical microphone mute switch
+- Optional camera with a physical privacy switch
+- Long standby time and automatic wake-up
+
+## Development Roadmap
+
+### Phase 1 — Minimum Viable Product
+
+- [ ] Wake word, ASR, TTS, and barge-in
+- [ ] Unified intent model and session state machine
+- [ ] Essential playback and navigation controls
+- [ ] One AI assistant adapter and one audio application adapter
+- [ ] Basic spoken menu and touchscreen interface
+- [ ] Network and recognition error handling
+
+### Phase 2 — Multi-Application Experience
+
+- [ ] Switching between Doubao and ChatGPT
+- [ ] Xuexi Qiangguo, Soda Music, and Yunting adapters
+- [ ] Menu pagination, repetition, and speech-rate controls
+- [ ] Secure accounts, favorites, history, and sleep timer
+
+### Phase 3 — Production Readiness
+
+- [ ] Offline essential commands
+- [ ] Privacy, permission, and compliance review
+- [ ] Automated regression tests and device compatibility matrix
+- [ ] Remote configuration, adapter updates, and diagnostics
+- [ ] Accessibility and older-adult usability testing
+
+See [docs/acceptance-criteria.md](docs/acceptance-criteria.md) for detailed acceptance criteria.
+
+## License
+
+No open-source license has been selected yet. All rights are reserved until a license is added.

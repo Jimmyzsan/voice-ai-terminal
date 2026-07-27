@@ -1,0 +1,19 @@
+# Android / Gradle
+.gradle/
+build/
+**/build/
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Secrets and local configuration
+.env
+*.keystore
+*.jks
+secrets.properties
+
+# Operating systems
+.DS_Store
+Thumbs.db
